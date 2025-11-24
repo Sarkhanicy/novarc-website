@@ -1,0 +1,429 @@
+.targetads{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 150vh;
+    background: #000;
+
+    .targetads-wrapper{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 90%;
+        height: 90vh;
+        gap: 100px;
+
+        .targetads-title{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex-direction: column;
+            gap: 15px;
+
+            h1{
+                font-family: "Poppins", sans-serif;
+                font-weight: 200;
+                font-style: normal;
+                font-size: 50px;
+                margin: 0;
+
+                @media (max-width: 768px) {
+                    font-size: 32px;
+                }
+
+                @media (max-width: 480px) {
+                    font-size: 24px;
+                }
+            }
+
+            .line{
+                height: 0.5px;
+                width: 600px;
+                background-color: #fff;
+
+                @media (max-width: 768px) {
+                    width: 80%;
+                }
+            }
+
+            p{
+                font-family: "Poppins", sans-serif;
+                font-weight: 200;
+                font-style: italic;
+                font-size: 18px;
+                color: #ffffff7e;
+                margin: 0;
+
+                @media (max-width: 768px) {
+                    font-size: 14px;
+                }
+
+                @media (max-width: 480px) {
+                    font-size: 12px;
+                }
+            }
+        }
+
+        .targetads-infobox{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+
+            @media (max-width: 1024px) {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .targetads-iconbox{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                width: 40%;
+                gap: 20px;
+
+                @media (max-width: 1024px) {
+                    width: 100%;
+                }
+
+                .targetads-icons{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 20px;
+                    flex-wrap: wrap;
+                    
+                    #insta{
+                        width: 230px;
+                        margin-right: 18px;
+                        opacity: 0.5;
+
+                        @media (max-width: 768px) {
+                            width: 150px;
+                            margin-right: 10px;
+                        }
+
+                        @media (max-width: 480px) {
+                            width: 100px;
+                            margin-right: 0;
+                        }
+                    }
+                    #tiktok{
+                        width: 150px;
+                        opacity: 0.5;
+
+                        @media (max-width: 768px) {
+                            width: 100px;
+                        }
+
+                        @media (max-width: 480px) {
+                            width: 70px;
+                        }
+                    }
+                    #linkedin{
+                        width: 150px;
+                        opacity: 0.5;
+
+                        @media (max-width: 768px) {
+                            width: 100px;
+                        }
+
+                        @media (max-width: 480px) {
+                            width: 70px;
+                        }
+                    }
+                    #google{
+                        width: 180px;
+                        margin-left: 30px;
+                        opacity: 0.8;
+
+                        @media (max-width: 768px) {
+                            width: 120px;
+                            margin-left: 15px;
+                        }
+
+                        @media (max-width: 480px) {
+                            width: 80px;
+                            margin-left: 0;
+                        }
+                    }
+                }
+            }
+
+            .targetads-detailswrapper{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                text-align: center;
+                width: 60%;
+
+                @media (max-width: 1024px) {
+                    width: 100%;
+                }
+
+                .targetads-details-container{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
+
+                    -webkit-box-shadow: 5px 5px 100px 8px rgba(36, 36, 36, 1);
+                    -moz-box-shadow: 5px 5px 100px 8px rgba(36, 36, 36, 1);
+                    box-shadow: 5px 5px 100px 8px rgba(36, 36, 36, 1);
+
+                    @media (max-width: 1024px) {
+                        flex-direction: column;
+                        gap: 20px;
+                    }
+
+                    .targetads-details{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        text-align: center;
+                        flex-direction: column;
+                        width: 100%;
+                        height: 100%;
+
+                        @media (max-width: 768px) {
+                            flex-direction: row;
+                            gap: 10px;
+                        }
+
+                        @media (max-width: 480px) {
+                            flex-direction: column;
+                            gap: 15px;
+                        }
+
+                        .targetads-detailbox{
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            flex-direction: column;
+                            width: 350px;
+                            background: linear-gradient(to right, #131313 20%, #000 70%);
+                            height: 250px;
+                            gap: 20px;
+                            border: 0.5px solid rgba(255, 255, 255, 0.444);
+
+                            @media (max-width: 768px) {
+                                width: 45%;
+                                height: auto;
+                                padding: 20px;
+                            }
+
+                            @media (max-width: 480px) {
+                                width: 100%;
+                                height: auto;
+                                padding: 15px;
+                            }
+                            
+                            .details-title{
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                text-align: center;
+                                flex-direction: column;
+                                height: 70px;
+                                border-bottom: 0.5px solid rgba(255, 255, 255, 0.444);
+
+                                @media (max-width: 480px) {
+                                    height: auto;
+                                    padding-bottom: 10px;
+                                }
+
+                                h1{
+                                    font-family: "Poppins", sans-serif;
+                                    font-weight: 400;
+                                    font-style: normal;
+                                    font-size: 25px;
+                                    color: #ffffff;
+                                    margin: 0;
+
+                                    @media (max-width: 768px) {
+                                        font-size: 18px;
+                                    }
+
+                                    @media (max-width: 480px) {
+                                        font-size: 16px;
+                                    }
+                                }
+
+                                p{
+                                    font-family: "Poppins", sans-serif;
+                                    font-weight: 400;
+                                    font-style: normal;
+                                    font-size: 20px;
+                                    color: #ffffff;
+                                    margin: 0;
+
+                                    @media (max-width: 768px) {
+                                        font-size: 16px;
+                                    }
+
+                                    @media (max-width: 480px) {
+                                        font-size: 14px;
+                                    }
+                                }
+                            }
+
+                            .details-info{
+                                display: flex;
+                                align-items: flex-start;
+                                justify-content: center;
+                                flex-direction: column;
+                                gap: 5px;
+
+                                p{
+                                    font-family: "Poppins", sans-serif;
+                                    font-weight: 200;
+                                    font-style: normal;
+                                    font-size: 18px;
+                                    color: #ffffffbe;
+                                    width: 400px;
+                                    margin: 0;
+
+                                    @media (max-width: 768px) {
+                                        font-size: 14px;
+                                        width: 100%;
+                                    }
+
+                                    @media (max-width: 480px) {
+                                        font-size: 12px;
+                                        width: 100%;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .targetads-details2{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        text-align: center;
+                        flex-direction: column;
+                        width: 100%;
+                        height: 100%;
+
+                        @media (max-width: 768px) {
+                            flex-direction: row;
+                            gap: 10px;
+                        }
+
+                        @media (max-width: 480px) {
+                            flex-direction: column;
+                            gap: 15px;
+                        }
+
+                        .targetads-detailbox{
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            flex-direction: column;
+                            background: linear-gradient(to right, #000 20%, #131313 70%);
+                            width: 350px;
+                            height: 250px;
+                            gap: 20px;
+                            border: 0.5px solid rgba(255, 255, 255, 0.444);
+
+                            @media (max-width: 768px) {
+                                width: 45%;
+                                height: auto;
+                                padding: 20px;
+                            }
+
+                            @media (max-width: 480px) {
+                                width: 100%;
+                                height: auto;
+                                padding: 15px;
+                            }
+                            
+                            .details-title{
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                text-align: center;
+                                flex-direction: column;
+                                height: 70px;
+                                border-bottom: 0.5px solid rgba(255, 255, 255, 0.444);
+
+                                @media (max-width: 480px) {
+                                    height: auto;
+                                    padding-bottom: 10px;
+                                }
+
+                                h1{
+                                    font-family: "Poppins", sans-serif;
+                                    font-weight: 400;
+                                    font-style: normal;
+                                    font-size: 25px;
+                                    color: #ffffff;
+                                    margin: 0;
+
+                                    @media (max-width: 768px) {
+                                        font-size: 18px;
+                                    }
+
+                                    @media (max-width: 480px) {
+                                        font-size: 16px;
+                                    }
+                                }
+
+                                p{
+                                    font-family: "Poppins", sans-serif;
+                                    font-weight: 400;
+                                    font-style: normal;
+                                    font-size: 20px;
+                                    color: #ffffff;
+                                    margin: 0;
+
+                                    @media (max-width: 768px) {
+                                        font-size: 16px;
+                                    }
+
+                                    @media (max-width: 480px) {
+                                        font-size: 14px;
+                                    }
+                                }
+                            }
+
+                            .details-info{
+                                display: flex;
+                                align-items: flex-end;
+                                justify-content: center;
+                                flex-direction: column;
+                                gap: 5px;
+
+                                p{
+                                    font-family: "Poppins", sans-serif;
+                                    font-weight: 200;
+                                    font-style: normal;
+                                    font-size: 18px;
+                                    color: #ffffffbe;
+                                    width: 400px;
+                                    margin: 0;
+
+                                    @media (max-width: 768px) {
+                                        font-size: 14px;
+                                        width: 100%;
+                                    }
+
+                                    @media (max-width: 480px) {
+                                        font-size: 12px;
+                                        width: 100%;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+}
