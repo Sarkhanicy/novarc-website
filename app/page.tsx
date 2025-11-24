@@ -56,7 +56,7 @@ export default function Home() {
                   id="fixed"
                 >
                 <img src="./dot.svg" alt="" />
-                Crafting Unique Brand Identities
+                <p>Crafting Unique Brand Identities</p>
               </motion.button>
               <motion.div 
                 className="text-box"
