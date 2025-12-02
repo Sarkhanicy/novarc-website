@@ -214,9 +214,11 @@ const countryCodes = [
 const Contact = () => {
     const [loading, setLoading] = useState(false);
     const [sent, setSent] = useState(false);
+    const [error, setError] = useState<string | null>(null);
     const [selectedCountryCode, setSelectedCountryCode] = useState('+48');
     const [showCountryDropdown, setShowCountryDropdown] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
+    const formRef = useRef<HTMLFormElement>(null);
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -234,25 +236,64 @@ const Contact = () => {
         };
     }, [showCountryDropdown]);
   
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       setLoading(true);
+      setError(null);
+      setSent(false);
   
-      emailjs.sendForm(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
-        e.target as HTMLFormElement,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
-      )
-      .then(() => {
+      // Check if EmailJS env variables are set
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+      if (!serviceId || !templateId || !publicKey) {
+        setError("Email service is not configured. Please contact the website administrator.");
+        setLoading(false);
+        console.error("EmailJS environment variables are missing");
+        return;
+      }
+
+      try {
+        const form = e.target as HTMLFormElement;
+        const result = await emailjs.sendForm(
+          serviceId,
+          templateId,
+          form,
+          publicKey
+        );
+        
+        console.log("EmailJS success:", result);
         setSent(true);
         setLoading(false);
-        (e.target as HTMLFormElement).reset(); // Clear form
-      })
-      .catch((err) => {
+        
+        // Reset form but keep country code
+        const currentCountryCode = selectedCountryCode;
+        form.reset();
+        setSelectedCountryCode(currentCountryCode);
+        
+        // Auto-hide success message after 5 seconds
+        setTimeout(() => {
+          setSent(false);
+        }, 5000);
+      } catch (err: any) {
         console.error("EmailJS error:", err);
         setLoading(false);
-      });
+        
+        // Provide user-friendly error messages
+        if (err.text) {
+          setError(`Failed to send message: ${err.text}`);
+        } else if (err.message) {
+          setError(`Failed to send message: ${err.message}`);
+        } else {
+          setError("Failed to send message. Please check your connection and try again.");
+        }
+        
+        // Auto-hide error message after 7 seconds
+        setTimeout(() => {
+          setError(null);
+        }, 7000);
+      }
     };
   
     return (
@@ -265,7 +306,7 @@ const Contact = () => {
                         <p>Average Response Time: 1hr</p>
                     </div>
                     <div className="contact-form">
-                        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+                        <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-3">
                             <input name="name" placeholder="Name" required  />
                             <input name="email" type="email" placeholder="Email" required  />
                             <div className="phone-input-wrapper">
@@ -317,7 +358,12 @@ const Contact = () => {
                             >
                             {loading ? "Sending..." : "Send Message"}
                             </motion.button>
-                            {sent &&  <p>Message sent successfully ✔</p>}
+                            {sent && (
+                                <p className="form-message success">Message sent successfully ✔</p>
+                            )}
+                            {error && (
+                                <p className="form-message error">{error}</p>
+                            )}
                         </form>
                     </div>
 
