@@ -366,55 +366,7 @@
                         cursor: not-allowed;
                     }
                 }
-
-                .form-message {
-                    width: 900px;
-                    padding: 15px 20px;
-                    border-radius: 5px;
-                    font-family: "Poppins", sans-serif;
-                    font-weight: 300;
-                    font-size: 16px;
-                    text-align: center;
-                    margin: 0;
-                    animation: slideIn 0.3s ease-out;
-
-                    @media (max-width: 768px) {
-                        width: 100%;
-                        max-width: 500px;
-                        padding: 12px 15px;
-                        font-size: 14px;
-                    }
-
-                    @media (max-width: 480px) {
-                        max-width: 100%;
-                        padding: 10px 12px;
-                        font-size: 13px;
-                    }
-
-                    &.success {
-                        background: rgba(76, 175, 80, 0.2);
-                        border: 1px solid rgba(76, 175, 80, 0.5);
-                        color: #4caf50;
-                    }
-
-                    &.error {
-                        background: rgba(244, 67, 54, 0.2);
-                        border: 1px solid rgba(244, 67, 54, 0.5);
-                        color: #f44336;
-                    }
-                }
             }
         }
-    }
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
     }
 }
