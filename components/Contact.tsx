@@ -32,7 +32,7 @@ const Contact = () => {
   
     return (
         <>
-            <div className="contact">
+            <div id='contact' className="contact">
                 <div className="contact-wrapper">
                     <div className="contact-title">
                         <h1>Ready to bring your vision to life? Get in touch.</h1>
@@ -46,7 +46,7 @@ const Contact = () => {
                             <input name="phone" type="tel" placeholder="Phone"  />
                             <textarea name="message" placeholder="Message" required />
                             <motion.button 
-                                whileHover={{color:"#000", backgroundColor:"#ffffff"}}
+                                whileHover={{color:"#000", backgroundColor:"#fff"}}
                                 type="submit" disabled={loading}
                             >
                             {loading ? "Sending..." : "Send Message"}

@@ -5,8 +5,6 @@ import '../styles/main.scss';
 import {motion} from 'framer-motion';
 import Craft from "@/components/Craft";
 import Cursor from "@/cursor/Cursor";
-import Vision from "@/components/Vision";
-import VisionCont from "@/components/VisionCont";
 import Prices from "@/components/Prices";
 import TargetedAds from "@/components/TargetedAds";
 import Contact from "@/components/Contact";
@@ -37,6 +35,13 @@ const textVariants: any = {
 };
 
 export default function Home() {
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <>
     <Cursor/>
@@ -44,6 +49,7 @@ export default function Home() {
       <Navbar/> 
 
       <div 
+        id="home"
         className="main"
       >
 
@@ -73,6 +79,7 @@ export default function Home() {
                     animate={{opacity:1, scale:1}} 
                     transition={{duration: 0.7}}
                     whileHover={{color:"#000", backgroundColor:"#ffffff"}}
+                    onClick={scrollToContact}
                   >
                     Book a free Call 
                   </motion.button>
@@ -95,8 +102,6 @@ export default function Home() {
           </div>
       </div>
       <Craft/>
-      {/* <Vision/>
-      <VisionCont/> */}
       <Prices/>
       <TargetedAds/>
       <Contact/>

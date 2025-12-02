@@ -7,3 +7,10 @@
     z-index: 999;
     pointer-events: none;
 }
+
+// Hide cursor on mobile/responsive designs
+@media (max-width: 768px) {
+    .cursor {
+        display: none;
+    }
+}

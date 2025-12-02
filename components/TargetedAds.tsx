@@ -3,7 +3,7 @@ import '../styles/targetedads.scss';
 const TargetedAds = () => {
     return (
         <>
-            <div className="targetads">
+            <div id='targetedads' className="targetads">
                 <div className="targetads-wrapper">
                     <div className="targetads-title">
                         <h1>Targeted Ads Management</h1>

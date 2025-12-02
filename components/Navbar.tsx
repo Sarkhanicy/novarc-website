@@ -19,10 +19,10 @@ const Navbar = () => {
                 transition={{duration: 0.7}}
             >
                 <div className="navbar-wrapper">
-                    <img
+                    <a href="#home"> <img
                         src="./logo.svg" alt="" 
                     />
-                    
+                    </a>
                     {/* Hamburger Menu Button */}
                     <button 
                         className={`hamburger ${isMenuOpen ? 'active' : ''}`}
@@ -36,14 +36,21 @@ const Navbar = () => {
 
                     {/* Desktop & Mobile Links */}
                     <div className={`links ${isMenuOpen ? 'active' : ''}`}>
+                        <div className="mobile-brand">
+                            <a href="#home" onClick={() => setIsMenuOpen(false)}>
+                                <img src="/logo.svg" alt="Novarc Media" />
+                            </a>
+                        </div>
                         <ul>
-                            <li onClick={() => setIsMenuOpen(false)}>Services</li>
-                            <li onClick={() => setIsMenuOpen(false)}>Vision</li>
-                            <li onClick={() => setIsMenuOpen(false)}>Pricing</li>
-                            <button onClick={() => setIsMenuOpen(false)}>
-                                <img src="./star.svg" alt="" />
-                                Collaborate
-                            </button>
+                            <li onClick={() => setIsMenuOpen(false)}><a href="#services">Services</a></li>
+                            <li onClick={() => setIsMenuOpen(false)}><a href="#pricing">Pricing</a></li>
+                            <li onClick={() => setIsMenuOpen(false)}><a href="#targetedads">Ads Management</a></li>
+                            <a href="#contact"> 
+                                <button onClick={() => setIsMenuOpen(false)}>
+                                    <img src="./star.svg" alt="" />
+                                    Collaborate
+                                </button>
+                            </a>
                         </ul>
                     </div>
                 </div>

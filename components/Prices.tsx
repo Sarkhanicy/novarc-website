@@ -3,7 +3,7 @@ import '../styles/prices.scss'
 const Prices = () => {
     return ( 
         <>
-            <div className="prices">
+            <div id='pricing' className="prices">
                 <div className="prices-wrapper">
                     <div className="prices-title">
                         <h1>Our Pricing</h1>

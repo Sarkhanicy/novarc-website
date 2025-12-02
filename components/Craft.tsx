@@ -1,13 +1,20 @@
-
+"use client";
 
 import '../styles/craft.scss';
 import {motion} from 'framer-motion';
 
 
 const Craft = () => {
+    const scrollToContact = () => {
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+            contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
+
     return (
         <>
-            <div className="craft">
+            <div id='services' className="craft">
                 <div className="craft-wrapper">
                     <div className="services">
                         <div className="info-box">
@@ -32,6 +39,7 @@ const Craft = () => {
                                     animate={{opacity:1, scale:1}} 
                                     transition={{duration: 0.8}}
                                     whileHover={{color:"#000", backgroundColor:"#ffffff"}}
+                                    onClick={scrollToContact}
                                 >
                                     Book a Free Call
                                 </motion.button>
