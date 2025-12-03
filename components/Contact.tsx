@@ -2,7 +2,7 @@
 import '../styles/contact.scss';
 import emailjs from "@emailjs/browser";
 import { useState, useEffect, useRef } from "react";
-import {motion} from 'framer-motion';
+import {motion, useInView} from 'framer-motion';
 
 const countryCodes = [
     { code: '+1', country: 'US/CA', flag: '🇺🇸' },
@@ -216,7 +216,12 @@ const Contact = () => {
     const [sent, setSent] = useState(false);
     const [selectedCountryCode, setSelectedCountryCode] = useState('+48');
     const [showCountryDropdown, setShowCountryDropdown] = useState(false);
+    const [wantsCall, setWantsCall] = useState(false);
+    const [callDate, setCallDate] = useState('');
+    const [callTime, setCallTime] = useState('');
     const dropdownRef = useRef<HTMLDivElement>(null);
+    const sectionRef = useRef(null);
+    const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -248,6 +253,9 @@ const Contact = () => {
         setSent(true);
         setLoading(false);
         (e.target as HTMLFormElement).reset(); // Clear form
+        setWantsCall(false);
+        setCallDate('');
+        setCallTime('');
       })
       .catch((err) => {
         console.error("EmailJS error:", err);
@@ -257,8 +265,13 @@ const Contact = () => {
   
     return (
         <>
-            <div id='contact' className="contact">
-                <div className="contact-wrapper">
+            <div id='contact' className="contact" ref={sectionRef}>
+                <motion.div 
+                    className="contact-wrapper"
+                    initial={{ opacity: 0, y: 100 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                >
                     <div className="contact-title">
                         <h1>Ready to bring your vision to life? Get in touch.</h1>
                         <div className="line"></div>
@@ -266,7 +279,10 @@ const Contact = () => {
                     </div>
                     <div className="contact-form">
                         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+                            <div className="name-company-wrapper">
                             <input name="name" placeholder="Name" required  />
+                                <input name="company" type="text" placeholder="Company (Optional)" />
+                            </div>
                             <input name="email" type="email" placeholder="Email" required  />
                             <div className="phone-input-wrapper">
                                 <div 
@@ -311,8 +327,74 @@ const Contact = () => {
                                 />
                             </div>
                             <textarea name="message" placeholder="Message" required />
+                            
+                            {wantsCall && (
+                                <>
+                                    <input type="hidden" name="wantsCall" value="Yes" />
+                                    <input type="hidden" name="callDate" value={callDate} />
+                                    <input type="hidden" name="callTime" value={callTime} />
+                                </>
+                            )}
+                            
+                            <div className="call-preference-section">
+                                <motion.button
+                                    type="button"
+                                    className={`call-toggle ${wantsCall ? 'active' : ''}`}
+                                    onClick={() => setWantsCall(!wantsCall)}
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
+                                >
+                                    <span className="toggle-icon">{wantsCall ? '✓' : '+'}</span>
+                                    <span>I'd like to receive a call</span>
+                                </motion.button>
+
+                                {wantsCall && (
+                                    <motion.div
+                                        className="call-scheduling"
+                                        initial={{ opacity: 0, height: 0 }}
+                                        animate={{ opacity: 1, height: 'auto' }}
+                                        exit={{ opacity: 0, height: 0 }}
+                                        transition={{ duration: 0.3 }}
+                                    >
+                                        <div className="call-datetime-wrapper">
+                                            <div className="call-date-wrapper">
+                                                <label htmlFor="callDate">Preferred Date</label>
+                                                <div className="date-input-wrapper">
+                                                    <input
+                                                        id="callDate"
+                                                        type="date"
+                                                        name="callDate"
+                                                        value={callDate}
+                                                        onChange={(e) => setCallDate(e.target.value)}
+                                                        min={new Date().toISOString().split('T')[0]}
+                                                        required
+                                                        className="date-time-input"
+                                                    />
+                                                    <span className="picker-icon">📅</span>
+                                                </div>
+                                            </div>
+                                            <div className="call-time-wrapper">
+                                                <label htmlFor="callTime">Preferred Time</label>
+                                                <div className="time-input-wrapper">
+                                                    <input
+                                                        id="callTime"
+                                                        type="time"
+                                                        name="callTime"
+                                                        value={callTime}
+                                                        onChange={(e) => setCallTime(e.target.value)}
+                                                        required
+                                                        className="date-time-input"
+                                                    />
+                                                    <span className="picker-icon">🕐</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </div>
+
                             <motion.button 
-                                whileHover={{color:"#000", backgroundColor:"#fff"}}
+                                whileHover={{color:"#000", backgroundColor:"#a8a8a8"}}
                                 type="submit" disabled={loading}
                             >
                             {loading ? "Sending..." : "Send Message"}
@@ -321,7 +403,7 @@ const Contact = () => {
                         </form>
                     </div>
 
-                </div>
+                </motion.div>
             </div>
       </>
     );

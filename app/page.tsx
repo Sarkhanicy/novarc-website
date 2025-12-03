@@ -5,6 +5,7 @@ import '../styles/main.scss';
 import {motion} from 'framer-motion';
 import Craft from "@/components/Craft";
 import Cursor from "@/cursor/Cursor";
+import Portfolio from "@/components/Portfolio";
 import Prices from "@/components/Prices";
 import TargetedAds from "@/components/TargetedAds";
 import Contact from "@/components/Contact";
@@ -39,6 +40,13 @@ export default function Home() {
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const scrollToServices = () => {
+    const servicesSection = document.getElementById('services');
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
@@ -78,7 +86,6 @@ export default function Home() {
                     initial={{opacity:0, scale:0.9}} 
                     animate={{opacity:1, scale:1}} 
                     transition={{duration: 0.7}}
-                    whileHover={{color:"#000", backgroundColor:"#ffffff"}}
                     onClick={scrollToContact}
                   >
                     Book a free Call 
@@ -87,7 +94,7 @@ export default function Home() {
                     initial={{opacity:0, scale:0.9}} 
                     animate={{opacity:1, scale:1}} 
                     transition={{duration: 0.8}}
-                    whileHover={{color:"#000", backgroundColor:"#ffffff"}}
+                    onClick={scrollToServices}
                   >
                     See More
                   </motion.button>
@@ -102,6 +109,7 @@ export default function Home() {
           </div>
       </div>
       <Craft/>
+      <Portfolio/>
       <Prices/>
       <TargetedAds/>
       <Contact/>

@@ -187,6 +187,46 @@
                         font-size: 13px;
                     }
                 }
+
+                a{
+                    font-family: "Poppins", sans-serif;
+                    font-weight: 200;
+                    font-style: normal;
+                    font-size: 17px;
+                    color: #c0c0c0;
+                    margin: 0;
+                    text-decoration: none;
+                    transition: all 0.3s ease;
+                    cursor: pointer;
+                    position: relative;
+
+                    @media (max-width: 768px) {
+                        font-size: 14px;
+                    }
+
+                    @media (max-width: 480px) {
+                        font-size: 13px;
+                    }
+
+                    &::after{
+                        content: '';
+                        position: absolute;
+                        bottom: -2px;
+                        left: 0;
+                        width: 0;
+                        height: 1px;
+                        background-color: #ffffff;
+                        transition: width 0.3s ease;
+                    }
+
+                    &:hover{
+                        color: #ffffff;
+                        
+                        &::after{
+                            width: 100%;
+                        }
+                    }
+                }
             }
 
             .images{
@@ -286,6 +326,9 @@
                     font-style: normal;
                     color: #c0c0c0;
                     text-decoration: none;
+                    transition: all 0.3s ease;
+                    position: relative;
+                    cursor: pointer;
 
                     @media (max-width: 768px) {
                         font-size: 12px;
@@ -293,6 +336,25 @@
 
                     @media (max-width: 480px) {
                         font-size: 11px;
+                    }
+
+                    &::after{
+                        content: '';
+                        position: absolute;
+                        bottom: -2px;
+                        left: 0;
+                        width: 0;
+                        height: 1px;
+                        background-color: #ffffff;
+                        transition: width 0.3s ease;
+                    }
+
+                    &:hover{
+                        color: #ffffff;
+                        
+                        &::after{
+                            width: 100%;
+                        }
                     }
                 }
             }
@@ -315,6 +377,9 @@
                     font-style: normal;
                     color: #c0c0c0;
                     text-decoration: none;
+                    transition: all 0.3s ease;
+                    position: relative;
+                    cursor: pointer;
 
                     @media (max-width: 768px) {
                         font-size: 12px;
@@ -322,6 +387,25 @@
 
                     @media (max-width: 480px) {
                         font-size: 11px;
+                    }
+
+                    &::after{
+                        content: '';
+                        position: absolute;
+                        bottom: -2px;
+                        left: 0;
+                        width: 0;
+                        height: 1px;
+                        background-color: #ffffff;
+                        transition: width 0.3s ease;
+                    }
+
+                    &:hover{
+                        color: #ffffff;
+                        
+                        &::after{
+                            width: 100%;
+                        }
                     }
                 }
             }

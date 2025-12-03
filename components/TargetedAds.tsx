@@ -1,10 +1,22 @@
+"use client";
+
 import '../styles/targetedads.scss';
+import {motion, useInView} from 'framer-motion';
+import {useRef} from 'react';
 
 const TargetedAds = () => {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, amount: 0.2 });
+
     return (
         <>
-            <div id='targetedads' className="targetads">
-                <div className="targetads-wrapper">
+            <div id='targetedads' className="targetads" ref={ref}>
+                <motion.div 
+                    className="targetads-wrapper"
+                    initial={{ opacity: 0, x: 100 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 100 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                >
                     <div className="targetads-title">
                         <h1>Targeted Ads Management</h1>
                         <div className="line"></div>
@@ -88,7 +100,7 @@ const TargetedAds = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </motion.div>
             </div>
         </>
     );

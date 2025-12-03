@@ -1,10 +1,14 @@
 "use client";
 
 import '../styles/craft.scss';
-import {motion} from 'framer-motion';
+import {motion, useInView} from 'framer-motion';
+import {useRef} from 'react';
 
 
 const Craft = () => {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, amount: 0.2 });
+
     const scrollToContact = () => {
         const contactSection = document.getElementById('contact');
         if (contactSection) {
@@ -12,10 +16,22 @@ const Craft = () => {
         }
     };
 
+    const scrollToPricing = () => {
+        const pricingSection = document.getElementById('portfolio');
+        if (pricingSection) {
+            pricingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
+
     return (
         <>
-            <div id='services' className="craft">
-                <div className="craft-wrapper">
+            <div id='services' className="craft" ref={ref}>
+                <motion.div 
+                    className="craft-wrapper"
+                    initial={{ opacity: 0, x: -100 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                >
                     <div className="services">
                         <div className="info-box">
                             <div className="craft-box">
@@ -38,7 +54,6 @@ const Craft = () => {
                                     initial={{opacity:0, scale:0.9}} 
                                     animate={{opacity:1, scale:1}} 
                                     transition={{duration: 0.8}}
-                                    whileHover={{color:"#000", backgroundColor:"#ffffff"}}
                                     onClick={scrollToContact}
                                 >
                                     Book a Free Call
@@ -47,9 +62,9 @@ const Craft = () => {
                                     initial={{opacity:0, scale:0.9}} 
                                     animate={{opacity:1, scale:1}} 
                                     transition={{duration: 0.8}}
-                                    whileHover={{color:"#000", backgroundColor:"#ffffff"}}
+                                    onClick={scrollToPricing}
                                 >
-                                    Learn More
+                                    See Our Work
                                 </motion.button>
                             </div>
                         </div>
@@ -93,7 +108,7 @@ const Craft = () => {
                             <p>Strategic ad campaigns optimized for your audience to increase visibility, clicks, and conversions across digital platforms.</p>
                         </div>
                     </div>
-                </div>
+                </motion.div>
             </div>
         </>
     );

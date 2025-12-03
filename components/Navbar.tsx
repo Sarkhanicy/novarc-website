@@ -43,6 +43,7 @@ const Navbar = () => {
                         </div>
                         <ul>
                             <li onClick={() => setIsMenuOpen(false)}><a href="#services">Services</a></li>
+                            <li onClick={() => setIsMenuOpen(false)}><a href="#portfolio">Portfolio</a></li>
                             <li onClick={() => setIsMenuOpen(false)}><a href="#pricing">Pricing</a></li>
                             <li onClick={() => setIsMenuOpen(false)}><a href="#targetedads">Ads Management</a></li>
                             <a href="#contact"> 

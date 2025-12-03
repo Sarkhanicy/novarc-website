@@ -27,7 +27,33 @@
             justify-content: center;
             text-align: center;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
+
+            .prices-badge{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                width: 150px;
+                height: 30px;
+                border-radius: 14px;
+                border: 0.5px solid #4c4c4cb2;
+                background: linear-gradient(to right, #6969692b, #00000037);
+                padding: 0 15px;
+                font-size: 15px;
+                color: #a4a4a4;
+
+                @media (max-width: 768px) {
+                    width: 140px;
+                    height: 28px;
+                    font-size: 14px;
+                }
+
+                img{
+                    width: 30px;
+                    height: auto;
+                }
+            }
 
             h1{
                 font-family: "Poppins", sans-serif;
@@ -35,6 +61,8 @@
                 font-style: normal;
                 font-size: clamp(2.5rem, 6vw, 80px);
                 line-height: 1.2;
+                color: #ffffff;
+                margin: 0;
             }
 
             p{
@@ -43,13 +71,15 @@
                 font-style: italic;
                 font-size: clamp(16px, 2vw, 20px);
                 color: #ffffff87;
+                margin: 0;
             }
 
             .line{
                 width: 100%;
                 max-width: 500px;
-                height: 0.1px;
+                height: 0.5px;
                 background-color: #ffffff;
+                margin-top: 5px;
             }
         }
 
@@ -58,8 +88,12 @@
             align-items: stretch;
             justify-content: center;
             width: 100%;
-            gap: 0;
+            gap: 30px;
             overflow-x: auto;
+
+            @media (max-width: 768px) {
+                gap: 20px;
+            }
 
             .pricebox{
                 display: flex;
@@ -71,26 +105,98 @@
                 max-width: 400px;
                 height: auto;
                 min-height: 650px;
-                border: 1px solid white;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 20px;
+                background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 50%, #0d0d0d 100%);
+                overflow: hidden;
+                position: relative;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+
+                @media (max-width: 768px) {
+                    border-radius: 15px;
+                }
+
+                &::before{
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
+                    opacity: 0;
+                    transition: opacity 0.4s ease;
+                    pointer-events: none;
+                }
+
+                &:hover{
+                    border-color: rgba(255, 255, 255, 0.4);
+                    transform: translateY(-5px);
+                    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+
+                    &::before{
+                        opacity: 1;
+                    }
+                }
+
+                &.featured{
+                    border-color: rgba(255, 255, 255, 0.3);
+                    background: linear-gradient(135deg, #1a1a1a 0%, #262626 50%, #1a1a1a 100%);
+                    box-shadow: 0 15px 50px rgba(255, 255, 255, 0.1);
+
+                    &:hover{
+                        border-color: rgba(255, 255, 255, 0.5);
+                        box-shadow: 0 25px 70px rgba(255, 255, 255, 0.15);
+                    }
+
+                    .pricebox-header{
+                        background: linear-gradient(135deg, #262626 0%, #333333 100%);
+                    }
+
+                    // Center all text in featured box (Final Price)
+                    .pricebox-details p,
+                    .last-detail p{
+                        padding-left: 0 !important;
+                    }
+                }
+                
+                // Center text in second box (Work Time) which doesn't have service numbers
+                &:nth-child(2) .pricebox-details p,
+                &:nth-child(2) .last-detail p{
+                    padding-left: 0 !important;
+                }
 
                 .pricebox-header{
                     width: 100%;
                     min-height: 150px;
-                    border-bottom: 1px solid white;
-                    border-left: 1px solid white;
-                    border-right: 1px solid white;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     text-align: center;
-                    padding: 15px;
-                    background: linear-gradient(to right, #000 20%, #131313 70%);
+                    padding: 25px 15px;
+                    background: linear-gradient(135deg, #131313 0%, #1a1a1a 100%);
+                    position: relative;
+
+                    &::after{
+                        content: '';
+                        position: absolute;
+                        bottom: 0;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: 60px;
+                        height: 2px;
+                        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+                    }
 
                     h1{
                         font-family: "Poppins", sans-serif;
-                        font-weight: 200;
+                        font-weight: 300;
                         font-style: normal;
                         font-size: clamp(28px, 3vw, 42px);
+                        color: #ffffff;
+                        letter-spacing: 0.5px;
                     }
                 }
 
@@ -101,15 +207,96 @@
                     align-items: center;
                     justify-content: center;
                     text-align: center;
-                    border-bottom: 0.5px solid white;
-                    padding: 15px 20px;
+                    border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+                    padding: 20px;
+                    position: relative;
+                    transition: all 0.3s ease;
+
+                    @media (max-width: 768px) {
+                        padding: 15px;
+                    }
+
+                    &:hover{
+                        background: rgba(255, 255, 255, 0.02);
+                    }
+
+                    .service-number{
+                        position: absolute;
+                        left: 20px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 35px;
+                        height: 35px;
+                        border-radius: 50%;
+                        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+                        border: 1px solid rgba(255, 255, 255, 0.2);
+                        font-family: "Poppins", sans-serif;
+                        font-weight: 400;
+                        font-size: 16px;
+                        color: #ffffff;
+
+                        @media (max-width: 768px) {
+                            width: 30px;
+                            height: 30px;
+                            font-size: 14px;
+                            left: 15px;
+                        }
+                    }
 
                     p{
                         font-family: "Poppins", sans-serif;
-                        font-weight: 100;
+                        font-weight: 300;
                         font-style: normal;
-                        font-size: clamp(14px, 1.5vw, 20px);
-                        line-height: 1.5;
+                        font-size: clamp(14px, 1.5vw, 18px);
+                        line-height: 1.6;
+                        color: #ffffff;
+                        margin: 0;
+                        padding-left: 50px;
+                        text-align: center;
+                        width: 100%;
+
+                        @media (max-width: 768px) {
+                            padding-left: 40px;
+                            font-size: clamp(13px, 3vw, 16px);
+                        }
+
+                        .service-detail,
+                        .work-detail{
+                            display: block;
+                            font-size: 0.85em;
+                            color: #b5b5b5;
+                            font-weight: 200;
+                            margin-top: 5px;
+                        }
+                    }
+
+                    // Center text when there's no service number (Work Time and Final Price boxes)
+                    &:not(:has(.service-number)) p{
+                        padding-left: 0;
+                    }
+                    
+                    // Alternative approach for better browser compatibility
+                    p:not(:has(+ .service-number)){
+                        // This will be handled by the parent selector
+                    }
+
+                    .price-amount{
+                        font-family: "Poppins", sans-serif;
+                        font-weight: 400;
+                        font-size: clamp(20px, 2.5vw, 28px);
+                        color: #ffffff;
+                        line-height: 1.4;
+                        padding-left: 0 !important;
+                        text-align: center;
+                        width: 100%;
+
+                        .currency{
+                            font-size: 0.7em;
+                            font-weight: 300;
+                            color: #b5b5b5;
+                            margin-left: 5px;
+                        }
                     }
                 }
 
@@ -120,14 +307,91 @@
                     align-items: center;
                     justify-content: center;
                     text-align: center;
-                    padding: 15px 20px;
+                    padding: 20px;
+                    position: relative;
+                    transition: all 0.3s ease;
+                    border-bottom: none;
+
+                    @media (max-width: 768px) {
+                        padding: 15px;
+                    }
+
+                    &:hover{
+                        background: rgba(255, 255, 255, 0.02);
+                    }
+
+                    .service-number{
+                        position: absolute;
+                        left: 20px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 35px;
+                        height: 35px;
+                        border-radius: 50%;
+                        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+                        border: 1px solid rgba(255, 255, 255, 0.2);
+                        font-family: "Poppins", sans-serif;
+                        font-weight: 400;
+                        font-size: 16px;
+                        color: #ffffff;
+
+                        @media (max-width: 768px) {
+                            width: 30px;
+                            height: 30px;
+                            font-size: 14px;
+                            left: 15px;
+                        }
+                    }
 
                     p{
                         font-family: "Poppins", sans-serif;
-                        font-weight: 100;
+                        font-weight: 300;
                         font-style: normal;
-                        font-size: clamp(14px, 1.5vw, 20px);
-                        line-height: 1.5;
+                        font-size: clamp(14px, 1.5vw, 18px);
+                        line-height: 1.6;
+                        color: #ffffff;
+                        margin: 0;
+                        padding-left: 50px;
+                        text-align: center;
+                        width: 100%;
+
+                        @media (max-width: 768px) {
+                            padding-left: 40px;
+                            font-size: clamp(13px, 3vw, 16px);
+                        }
+
+                        .service-detail,
+                        .work-detail{
+                            display: block;
+                            font-size: 0.85em;
+                            color: #b5b5b5;
+                            font-weight: 200;
+                            margin-top: 5px;
+                        }
+                    }
+
+                    p.price-amount{
+                        font-family: "Poppins", sans-serif;
+                        font-weight: 400;
+                        font-size: clamp(20px, 2.5vw, 28px) !important;
+                        color: #ffffff !important;
+                        line-height: 1.4;
+                        padding-left: 0 !important;
+                        margin: 0 !important;
+                        text-align: center;
+                        width: 100%;
+
+                        @media (max-width: 768px) {
+                            font-size: clamp(18px, 3vw, 24px) !important;
+                        }
+
+                        .currency{
+                            font-size: 0.7em;
+                            font-weight: 300;
+                            color: #b5b5b5;
+                            margin-left: 5px;
+                        }
                     }
                 }
             }
@@ -179,13 +443,13 @@
 
                     .pricebox-header {
                         min-height: 120px;
-                        padding: 12px;
+                        padding: 20px 12px;
                     }
 
                     .pricebox-details,
                     .last-detail {
                         min-height: 90px;
-                        padding: 12px 15px;
+                        padding: 15px;
                     }
                 }
             }
@@ -226,13 +490,13 @@
 
                     .pricebox-header {
                         min-height: 100px;
-                        padding: 15px 10px;
+                        padding: 20px 15px;
                     }
 
                     .pricebox-details,
                     .last-detail {
                         min-height: 80px;
-                        padding: 15px 10px;
+                        padding: 15px;
                     }
                 }
             }
@@ -258,16 +522,18 @@
                 gap: 15px;
 
                 .pricebox {
-                    width: 350px;
+                    width: 100%;
+                    max-width: 100%;
+                    
                     .pricebox-header {
                         min-height: 90px;
-                        padding: 12px 8px;
+                        padding: 18px 12px;
                     }
 
                     .pricebox-details,
                     .last-detail {
                         min-height: 70px;
-                        padding: 12px 8px;
+                        padding: 12px;
                     }
                 }
             }
