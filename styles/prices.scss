@@ -3,9 +3,13 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    min-height: 120vh;
+    min-height: 100vh;
     background-color: #000;
-    padding: 40px 20px;
+    padding: 80px 20px;
+
+    @media (max-width: 768px) {
+        padding: 60px 10px;
+    }
 
     .prices-wrapper{
         display: flex;
@@ -14,8 +18,7 @@
         flex-direction: column;
         width: 95%;
         max-width: 1400px;
-        min-height: 95vh;
-        gap: 50px;
+        gap: 60px;
 
         .prices-title{
             width: 100%;

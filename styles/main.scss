@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
 .main{
-    min-height: 105vh;
+    min-height: 100vh;
     width: 100%;
 
     background: url('/background.png');
@@ -16,7 +16,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 100px 20px;
 
     .hero-wrapper{
         display: flex;
@@ -188,7 +188,7 @@
 @media (max-width: 768px) {
     .main {
         min-height: 100vh;
-        padding: 15px;
+        padding: 80px 15px;
 
         .hero-wrapper {
             gap: 25px;

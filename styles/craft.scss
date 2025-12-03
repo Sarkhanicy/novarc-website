@@ -1,21 +1,24 @@
 .craft{
     width: 100%;
-    min-height: 110vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #000;
-    padding: 40px 20px;
+    padding: 80px 20px;
+
+    @media (max-width: 768px) {
+        padding: 60px 15px;
+    }
 
     .craft-wrapper{
         width: 85%;
         max-width: 1400px;
-        min-height: 85vh;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        gap: 25px;
+        gap: 60px;
 
         .services{
             display: flex;
