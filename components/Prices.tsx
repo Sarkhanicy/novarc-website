@@ -1,12 +1,84 @@
 "use client";
 
 import '../styles/prices.scss';
-import {motion, useInView} from 'framer-motion';
-import {useRef} from 'react';
+import {motion, useInView, AnimatePresence} from 'framer-motion';
+import {useRef, useState, useEffect} from 'react';
 
 const Prices = () => {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, amount: 0.2 });
+    const [expandedService, setExpandedService] = useState<number | null>(null);
+    const accordionRef = useRef<HTMLDivElement>(null);
+
+    // Data structure for mobile accordion
+    const servicesData = [
+        {
+            id: 1,
+            title: "Short Ad / Promo video",
+            detail: "(30-90 sec)",
+            workTime: "2 Shooting Days",
+            workDetail: "20-25 Hours of Post Production",
+            price: "2,500 - 5,000",
+            currency: "PLN"
+        },
+        {
+            id: 2,
+            title: "Medium-Length Brand Video",
+            detail: "(2–5 min)",
+            workTime: "3–4 Shooting Days",
+            workDetail: "40+ Hours of Post-Production",
+            price: "4,000 - 6,000",
+            currency: "PLN"
+        },
+        {
+            id: 3,
+            title: "Corporate / Commercial Film",
+            detail: "(5–10 min)",
+            workTime: "+5 Shooting Days",
+            workDetail: "60–80 Hours of Post-Production",
+            price: "10,000 - 15,000",
+            currency: "PLN"
+        },
+        {
+            id: 4,
+            title: "Motion Graphic / Animated Video",
+            detail: "(30-90 sec)",
+            workTime: "40–60 Hours of Work",
+            workDetail: "",
+            price: "2,000 - 5,000",
+            currency: "PLN"
+        },
+        {
+            id: 5,
+            title: "Drone Shoot",
+            detail: "(separate order)",
+            workTime: "1-2 Shooting Day",
+            workDetail: "12–24 Hours of Post-Production",
+            price: "2,000 - 3,000",
+            currency: "PLN"
+        }
+    ];
+
+    const handleServiceClick = (serviceId: number) => {
+        setExpandedService(expandedService === serviceId ? null : serviceId);
+    };
+
+    // Close accordion when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (accordionRef.current && !accordionRef.current.contains(event.target as Node)) {
+                setExpandedService(null);
+            }
+        };
+
+        if (expandedService !== null) {
+            document.addEventListener('mousedown', handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [expandedService]);
 
     return ( 
         <>
@@ -26,7 +98,8 @@ const Prices = () => {
                         <p>Transparent rates. Real value.</p>
                         <div className="line"></div>
                     </div>
-                    <div className="pricebox-container">
+                    {/* Desktop View - 3 boxes side by side */}
+                    <div className="pricebox-container desktop-view">
                         <motion.div 
                             className="pricebox"
                             initial={{ opacity: 0, x: -50 }}
@@ -106,6 +179,67 @@ const Prices = () => {
                             <div className="last-detail">
                                 <p className="price-amount">2,000 - 3,000 <span className="currency">PLN</span></p>
                             </div>
+                        </motion.div>
+                    </div>
+
+                    {/* Mobile View - Accordion */}
+                    <div className="pricebox-container mobile-view">
+                        <motion.div 
+                            ref={accordionRef}
+                            className="pricebox mobile-accordion"
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                            transition={{ duration: 0.6, delay: 0.1 }}
+                        >
+                            <div className="pricebox-header">
+                                <h1>Service Type</h1>
+                            </div>
+                            {servicesData.map((service, index) => (
+                                <div key={service.id}>
+                                    <motion.div 
+                                        className={`pricebox-details mobile-service-item ${expandedService === service.id ? 'expanded' : ''} ${index === servicesData.length - 1 ? 'last-detail' : ''}`}
+                                        onClick={() => handleServiceClick(service.id)}
+                                        whileTap={{ scale: 0.98 }}
+                                    >
+                                        <span className="service-number">{service.id}</span>
+                                        <p>
+                                            {service.title} <br/>
+                                            <span className="service-detail">{service.detail}</span>
+                                        </p>
+                                        <span className="expand-icon">{expandedService === service.id ? '−' : '+'}</span>
+                                    </motion.div>
+                                    <AnimatePresence>
+                                        {expandedService === service.id && (
+                                            <motion.div
+                                                className="mobile-expanded-content"
+                                                initial={{ opacity: 0, height: 0 }}
+                                                animate={{ opacity: 1, height: 'auto' }}
+                                                exit={{ opacity: 0, height: 0 }}
+                                                transition={{ duration: 0.3, ease: "easeInOut" }}
+                                            >
+                                                <div className="expanded-work-time">
+                                                    <h3>Work Time</h3>
+                                                    <p>
+                                                        {service.workTime}
+                                                        {service.workDetail && (
+                                                            <>
+                                                                <br/>
+                                                                <span className="work-detail">{service.workDetail}</span>
+                                                            </>
+                                                        )}
+                                                    </p>
+                                                </div>
+                                                <div className="expanded-price">
+                                                    <h3>Final Price</h3>
+                                                    <p className="price-amount">
+                                                        {service.price} <span className="currency">{service.currency}</span>
+                                                    </p>
+                                                </div>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
+                            ))}
                         </motion.div>
                     </div>
                 </motion.div>

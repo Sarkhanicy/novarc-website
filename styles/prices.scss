@@ -95,6 +95,20 @@
                 gap: 20px;
             }
 
+            &.mobile-view {
+                display: none;
+
+                @media (max-width: 768px) {
+                    display: flex;
+                }
+            }
+
+            &.desktop-view {
+                @media (max-width: 768px) {
+                    display: none;
+                }
+            }
+
             .pricebox{
                 display: flex;
                 align-items: center;
@@ -482,7 +496,168 @@
                 overflow-x: visible;
                 gap: 20px;
 
-                .pricebox {
+                &.desktop-view {
+                    display: none;
+                }
+
+                &.mobile-view {
+                    display: flex;
+                    width: 100%;
+                    max-width: 500px;
+
+                    .pricebox.mobile-accordion {
+                        width: 100%;
+                        max-width: 500px;
+                        min-width: auto;
+                        min-height: auto;
+
+                        .pricebox-header {
+                            min-height: 100px;
+                            padding: 20px 15px;
+                        }
+
+                        .mobile-service-item {
+                            cursor: pointer;
+                            user-select: none;
+                            position: relative;
+                            transition: all 0.3s ease;
+                            min-height: 80px;
+                            width: 300px !important;
+                            max-width: 100% !important;
+                            padding-top: 22px !important;
+                            padding-bottom: 22px !important;
+                            padding-left: 70px !important;
+                            padding-right: 50px !important;
+                            box-sizing: border-box !important;
+                            display: block !important;
+                            align-items: unset !important;
+                            justify-content: unset !important;
+
+                            &:hover {
+                                background: rgba(255, 255, 255, 0.05);
+                            }
+
+                            &.expanded {
+                                background: rgba(255, 255, 255, 0.08);
+                                border-bottom-color: rgba(255, 255, 255, 0.2);
+                            }
+
+                            &.last-detail {
+                                border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+                            }
+
+                            .service-number {
+                                position: absolute !important;
+                                left: 20px !important;
+                                top: 22px !important;
+                                display: flex !important;
+                                align-items: center !important;
+                                justify-content: center !important;
+                                width: 35px !important;
+                                height: 35px !important;
+                                min-width: 35px !important;
+                                max-width: 35px !important;
+                                border-radius: 50% !important;
+                                background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
+                                border: 1px solid rgba(255, 255, 255, 0.2) !important;
+                                font-family: "Poppins", sans-serif !important;
+                                font-weight: 400 !important;
+                                font-size: 16px !important;
+                                color: #ffffff !important;
+                                margin: 0 !important;
+                                padding: 0 !important;
+                                transform: none !important;
+                            }
+
+                            p {
+                                margin: 0;
+                                padding: 0;
+                                text-align: center;
+                                line-height: 1.6;
+                                font-family: "Poppins", sans-serif;
+                                font-weight: 300;
+                                font-style: normal;
+                                font-size: clamp(14px, 1.5vw, 18px);
+                                color: #ffffff;
+                            }
+
+                            .expand-icon {
+                                position: absolute;
+                                right: 20px;
+                                top: 50%;
+                                transform: translateY(-50%);
+                                font-size: 18px;
+                                font-weight: 300;
+                                color: rgba(255, 255, 255, 0.5);
+                                transition: color 0.3s ease;
+                                line-height: 1;
+                            }
+
+                            &.expanded .expand-icon {
+                                color: rgba(255, 255, 255, 0.8);
+                            }
+                        }
+
+                        .mobile-expanded-content {
+                            overflow: hidden;
+                            background: rgba(0, 0, 0, 0.3);
+                            border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+
+                            .expanded-work-time,
+                            .expanded-price {
+                                padding: 20px;
+                                border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+
+                                &:last-child {
+                                    border-bottom: none;
+                                }
+
+                                h3 {
+                                    font-family: "Poppins", sans-serif;
+                                    font-weight: 400;
+                                    font-size: 16px;
+                                    color: #b5b5b5;
+                                    margin: 0 0 10px 0;
+                                    text-transform: uppercase;
+                                    letter-spacing: 0.5px;
+                                }
+
+                                p {
+                                    font-family: "Poppins", sans-serif;
+                                    font-weight: 300;
+                                    font-size: 15px;
+                                    color: #ffffff;
+                                    margin: 0;
+                                    padding-left: 0;
+                                    text-align: left;
+
+                                    .work-detail {
+                                        display: block;
+                                        font-size: 0.9em;
+                                        color: #b5b5b5;
+                                        font-weight: 200;
+                                        margin-top: 5px;
+                                    }
+
+                                    &.price-amount {
+                                        font-size: 22px;
+                                        font-weight: 400;
+                                        color: #ffffff;
+
+                                        .currency {
+                                            font-size: 0.7em;
+                                            font-weight: 300;
+                                            color: #b5b5b5;
+                                            margin-left: 5px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .pricebox:not(.mobile-accordion) {
                     width: 100%;
                     max-width: 500px;
                     min-width: auto;
