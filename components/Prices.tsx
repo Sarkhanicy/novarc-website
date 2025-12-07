@@ -18,8 +18,8 @@ const Prices = () => {
             detail: "(30-90 sec)",
             workTime: "2 Shooting Days",
             workDetail: "20-25 Hours of Post Production",
-            price: "2,500 - 5,000",
-            currency: "PLN"
+            price: "600 - 1,500",
+            currency: "EUR"
         },
         {
             id: 2,
@@ -27,8 +27,8 @@ const Prices = () => {
             detail: "(2–5 min)",
             workTime: "3–4 Shooting Days",
             workDetail: "40+ Hours of Post-Production",
-            price: "4,000 - 6,000",
-            currency: "PLN"
+            price: "900 - 1,950",
+            currency: "EUR"
         },
         {
             id: 3,
@@ -36,8 +36,8 @@ const Prices = () => {
             detail: "(5–10 min)",
             workTime: "+5 Shooting Days",
             workDetail: "60–80 Hours of Post-Production",
-            price: "10,000 - 15,000",
-            currency: "PLN"
+            price: "2,000 - 3,500",
+            currency: "EUR"
         },
         {
             id: 4,
@@ -45,8 +45,8 @@ const Prices = () => {
             detail: "(30-90 sec)",
             workTime: "40–60 Hours of Work",
             workDetail: "",
-            price: "2,000 - 5,000",
-            currency: "PLN"
+            price: "400 - 1,000",
+            currency: "EUR"
         },
         {
             id: 5,
@@ -54,8 +54,8 @@ const Prices = () => {
             detail: "(separate order)",
             workTime: "1-2 Shooting Day",
             workDetail: "12–24 Hours of Post-Production",
-            price: "2,000 - 3,000",
-            currency: "PLN"
+            price: "650 - 1,250",
+            currency: "EUR"
         }
     ];
 
@@ -165,19 +165,19 @@ const Prices = () => {
                                 <h1>Final Price</h1>
                             </div>
                             <div className="pricebox-details">
-                                <p className="price-amount">2,500 - 5,000 <span className="currency">PLN</span></p>
+                                <p className="price-amount">600 - 1,500 <span className="currency">EUR</span></p>
                             </div>
                             <div className="pricebox-details">
-                                <p className="price-amount">4,000 - 6,000 <span className="currency">PLN</span></p>
+                                <p className="price-amount">900 - 1,950 <span className="currency">EUR</span></p>
                             </div>
                             <div className="pricebox-details">
-                                <p className="price-amount">10,000 - 15,000 <span className="currency">PLN</span></p>
+                                <p className="price-amount">2,000 - 3,500 <span className="currency">EUR</span></p>
                             </div>
                             <div className="pricebox-details">
-                                <p className="price-amount">2,000 - 5,000 <span className="currency">PLN</span></p>
+                                <p className="price-amount">400 - 1,000 <span className="currency">EUR</span></p>
                             </div>
                             <div className="last-detail">
-                                <p className="price-amount">2,000 - 3,000 <span className="currency">PLN</span></p>
+                                <p className="price-amount">650 - 1,250 <span className="currency">EUR</span></p>
                             </div>
                         </motion.div>
                     </div>
