@@ -41,7 +41,7 @@ const TargetedAds = () => {
                                     <div className="targetads-detailbox">
                                         <div className="details-title">
                                             <h1>Instagram Ads Management</h1>
-                                            <p>2,500 PLN / month</p>
+                                            <p>600 EUR / month</p>
                                         </div>
                                         <div className="details-info">
                                             <p>Ad strategy & audience targeting</p>
@@ -54,7 +54,7 @@ const TargetedAds = () => {
                                     <div className="targetads-detailbox">
                                         <div className="details-title">
                                             <h1>TikTok Ads Management</h1>
-                                            <p>2,700 PLN / month</p>
+                                            <p>600 EUR / month</p>
                                         </div>
                                         <div className="details-info">
                                             <p>Trend-based content strategy</p>
@@ -72,7 +72,7 @@ const TargetedAds = () => {
                                     <div className="targetads-detailbox">
                                         <div className="details-title">
                                             <h1>LinkedIn Ads Management</h1>
-                                            <p>3,200 PLN / month</p>
+                                            <p>700 EUR / month</p>
                                         </div>
                                         <div className="details-info">
                                             <p>Professional audience targeting</p>
@@ -85,7 +85,7 @@ const TargetedAds = () => {
                                     <div className="targetads-detailbox">
                                         <div className="details-title">
                                             <h1>Google Ads Management</h1>
-                                            <p>3,500 PLN / month</p>
+                                            <p>800 EUR / month</p>
                                         </div>
                                         <div className="details-info">
                                             <p>Keyword research and setup</p>
